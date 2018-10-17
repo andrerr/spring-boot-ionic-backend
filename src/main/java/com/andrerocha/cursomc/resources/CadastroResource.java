@@ -13,3 +13,4 @@ public class CadastroResource {
 		return "Rest está funcionando";
 	}
 }
+ 

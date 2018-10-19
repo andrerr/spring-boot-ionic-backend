@@ -6,14 +6,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.andrerocha.cursomc.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Cliente implements Serializable {
@@ -27,17 +29,17 @@ public class Cliente implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipoCliente;
 	
-	@ManyToOne
-	@JoinColumn(name="clientes_id")
+	@JsonManagedReference
+	@OneToMany(mappedBy="cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
+	
+	@ElementCollection
+	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
-	public Cliente( ) {
-		
-	}
+	public Cliente( ) {}
 	
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente,
-			List<Endereco> enderecos, Set<String> telefones) {
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -92,6 +94,14 @@ public class Cliente implements Serializable {
 	
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
+	}
+
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
 	}
 
 	@Override

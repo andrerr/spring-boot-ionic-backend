@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -22,18 +24,21 @@ public class Pedido implements Serializable{
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
 	private Pagamento pagamento;	
 	
+	@ManyToOne
+	@JoinColumn(name="cliente_id")
+	private Cliente cliente;
 	
-	private Pedido pedido;
+	@ManyToOne
+	@JoinColumn(name="endereco_id")
 	private Endereco endereco;
 	
 	public Pedido() {}
 
-	public Pedido(Integer numero, Date dataPedido, Pagamento pagamento, Pedido pedido, Endereco endereco) {
+	public Pedido(Integer numero, Date dataPedido, Cliente Cliente, Endereco endereco) {
 		super();
 		this.numero = numero;
 		this.dataPedido = dataPedido;
-		this.pagamento = pagamento;
-		this.pedido = pedido;
+		this.cliente = Cliente;
 		this.endereco = endereco;
 	}
 
@@ -60,15 +65,15 @@ public class Pedido implements Serializable{
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
-
-	public Pedido getPedido() {
-		return pedido;
+	
+	public Cliente getCliente() {
+		return cliente;
 	}
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-
+	
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -79,8 +84,8 @@ public class Pedido implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Pedido [numero=" + numero + ", dataPedido=" + dataPedido + ", pagamento=" + pagamento + ", pedido="
-				+ pedido + ", endereco=" + endereco + "]";
+		return "Pedido [numero=" + numero + ", dataPedido=" + dataPedido + ", pagamento=" + pagamento + ", cliente="
+				+ cliente + ", endereco=" + endereco + "]";
 	}
 
 	@Override

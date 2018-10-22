@@ -19,6 +19,7 @@ public abstract class Pagamento implements Serializable {
 	
 	@Id
 	private Integer id;
+	
 	private Integer statusPagamento;
 	
 	@OneToOne
@@ -26,8 +27,7 @@ public abstract class Pagamento implements Serializable {
 	@MapsId
 	private Pedido pedido;
 	
-	public Pagamento() {
-	}
+	public Pagamento() {}
 	
 	public Pagamento(Integer id, StatusPagamento statusPagamento, Pedido pedido) {
 		super();

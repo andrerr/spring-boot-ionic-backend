@@ -2,7 +2,6 @@ package com.andrerocha.cursomc;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.logging.SimpleFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -103,7 +102,7 @@ public class CursomcApplication implements CommandLineRunner {
 		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2018 10:00"), cli1, e1);
 		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2018 22:00"), cli1, e2);
 		
-		Pagamento pgto1 = new PagamentoCartao(null, StatusPagamento.QUITADO, 6);
+		Pagamento pgto1 = new PagamentoCartao(null, StatusPagamento.QUITADO, 2);
 		ped1.setPagamento(pgto1);
 		
 		Pagamento pgto2 = new PagamentoBoleto(null, StatusPagamento.PENDENTE, ped2, sdf.parse("10/10/2018 22:00"), null);

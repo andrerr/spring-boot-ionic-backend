@@ -2,8 +2,8 @@ package com.andrerocha.cursomc.domain.enums;
 
 public enum StatusPagamento {
 	
-	PENDENTE(1, "PEDIDO PENDENTE"),
-	QUITADO(2, "PEDIDO QUITADO"),
+	PENDENTE (1, "PEDIDO PENDENTE"),
+	QUITADO  (2, "PEDIDO QUITADO"),
 	CANCELADO(3, "PEDIDO CANCELADO");
 	
 	private Integer codigo;

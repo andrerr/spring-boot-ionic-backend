@@ -1,4 +1,4 @@
-	package com.andrerocha.cursomc.domain;
+package com.andrerocha.cursomc.domain;
 
 import java.io.Serializable;
 

@@ -16,8 +16,14 @@ public class CategoriaService {
 	public Categoria buscar(Integer id) {
 		Categoria obj = repo.findOne(id);
 		if (obj == null) {
-			throw new ObjectNotFoundException("Não foi possivel retornar dados. " + id + " Tipo: " + " Categoria: " + Categoria.class.getName());
+			throw new ObjectNotFoundException("Não foi possivel retornar dados. " + id 
+					+ " Tipo: " + " Categoria: " + Categoria.class.getName());
 		}
 		return obj;
+	}
+	
+	public Categoria insert (Categoria obj) {
+		obj.setId(null);
+		return repo.save(obj);
 	}
 }

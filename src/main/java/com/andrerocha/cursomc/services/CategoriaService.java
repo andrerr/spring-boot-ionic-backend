@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.andrerocha.cursomc.domain.Categoria;
 import com.andrerocha.cursomc.repositories.CategoriaRepository;
@@ -47,5 +51,10 @@ public class CategoriaService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possivel excluir categorias com produtos.");
 		}
+	}
+	
+	public Page<Categoria> findPage(Integer page, Integer linesPages, String orderBy, String direction) {
+			PageRequest pageRequest = new PageRequest(page, linesPages, Direction.valueOf(direction), orderBy);
+		return repo.findAll(pageRequest);
 	}
 }

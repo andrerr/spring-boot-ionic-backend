@@ -8,9 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.andrerocha.cursomc.domain.Categoria;
+import com.andrerocha.cursomc.dto.CategoriaDTO;
 import com.andrerocha.cursomc.repositories.CategoriaRepository;
 import com.andrerocha.cursomc.services.exception.DataIntegrityException;
 import com.andrerocha.cursomc.services.exception.ObjectNotFoundException;
@@ -56,5 +56,9 @@ public class CategoriaService {
 	public Page<Categoria> findPage(Integer page, Integer linesPages, String orderBy, String direction) {
 			PageRequest pageRequest = new PageRequest(page, linesPages, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Categoria fromDto(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
 	}
 }

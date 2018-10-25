@@ -39,7 +39,7 @@ public class Produto implements Serializable{
 	
 	@JsonBackReference //omite a busca do lado de categoria, não havendo necessidade de buscar novamente categorias 
 	@ManyToMany
-	@JoinTable(name = "PRODUTO_CATEGORIA",
+	@JoinTable(name = "PRODUTO_CATEGORIA", 
 		joinColumns = @JoinColumn(name = "produto_id"),
 		inverseJoinColumns = @JoinColumn(name = "categoria_id")
 	)

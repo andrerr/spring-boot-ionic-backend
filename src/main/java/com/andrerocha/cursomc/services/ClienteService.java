@@ -1,7 +1,6 @@
 package com.andrerocha.cursomc.services;
 
 import java.util.List;
-import java.util.function.ObjLongConsumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -41,7 +40,8 @@ public class ClienteService {
 	}
 	
 	public Cliente update (Cliente obj) {
-		find(obj.getId());
+		Cliente newOblj = find(obj.getId());
+		updateData(newOblj, obj);
 		return repo.save(obj);
 	}
 	
@@ -61,5 +61,10 @@ public class ClienteService {
 	
 	public Cliente fromDto(ClienteDTO objDto) {
 		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getCpfOuCnpj(), null, null);
+	}
+	
+	public void updateData(Cliente newObj, Cliente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
 	}
 }

@@ -5,7 +5,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.andrerocha.cursomc.domain.Cliente;
+import com.andrerocha.cursomc.services.validation.ClienteUpdate;
 
+@ClienteUpdate
 public class ClienteDTO extends Cliente {
 
 	private static final long serialVersionUID = 1L;
